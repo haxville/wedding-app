@@ -493,9 +493,9 @@ function AppStyles() {
       }
 
       .item-amount {
-        font-size: 21px;
-        font-weight: 500;
-        letter-spacing: -0.035em;
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
         text-align: right;
         white-space: nowrap;
       }
@@ -1371,21 +1371,23 @@ export default function App() {
 
                     <div className="hero-grid">
                       <div className="mini-box">
-                        <div className="mini-label">Avanzamento</div>
-                        <div className="mini-value">{stats.paidPercent}%</div>
-                      </div>
-
-                      <div className="mini-box">
-                        <div className="mini-label">Pagato</div>
-                        <div className="mini-value" style={{ color: "#34C759" }}>
-                          {fmtRound(stats.totalPaid)}
+                        <div className="mini-label">Spese totali</div>
+                        <div className="mini-value">
+                          {fmtRound(stats.totalBudget)}
                         </div>
                       </div>
 
                       <div className="mini-box">
-                        <div className="mini-label">Da pagare</div>
-                        <div className="mini-value" style={{ color: "#FF9500" }}>
-                          {fmtRound(stats.totalToPay)}
+                        <div className="mini-label">Regali ricevuti</div>
+                        <div className="mini-value" style={{ color: "#34C759" }}>
+                          {fmtRound(stats.totalGifts)}
+                        </div>
+                      </div>
+
+                      <div className="mini-box">
+                        <div className="mini-label">Media a persona</div>
+                        <div className="mini-value">
+                          {fmtRound(stats.mediaPerPerson)}
                         </div>
                       </div>
                     </div>
@@ -1393,31 +1395,31 @@ export default function App() {
 
                   <section className="grid">
                     <StatCard
+                      label="Da pagare"
+                      value={fmtRound(stats.totalToPay)}
+                      sub="ancora da versare"
+                      color="#FF9500"
+                    />
+
+                    <StatCard
+                      label="Pagato"
+                      value={fmtRound(stats.totalPaid)}
+                      sub="già versato"
+                      color="#34C759"
+                    />
+
+                    <StatCard
+                      label="Avanzamento"
+                      value={`${stats.paidPercent}%`}
+                      sub="sulle spese totali"
+                      color="#007AFF"
+                    />
+
+                    <StatCard
                       label="Giorni mancanti"
                       value={daysLeft}
                       sub="al matrimonio"
                       color="#1D1D1F"
-                    />
-
-                    <StatCard
-                      label="Spese totali"
-                      value={fmtRound(stats.totalBudget)}
-                      sub="budget complessivo"
-                      color="#1D1D1F"
-                    />
-
-                    <StatCard
-                      label="Regali ricevuti"
-                      value={fmtRound(stats.totalGifts)}
-                      sub={`${stats.totalPersons} persone`}
-                      color="#AF52DE"
-                    />
-
-                    <StatCard
-                      label="Media a persona"
-                      value={fmtRound(stats.mediaPerPerson)}
-                      sub="Adulti + bambini"
-                      color="#007AFF"
                     />
                   </section>
 
