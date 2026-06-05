@@ -1435,36 +1435,40 @@ export default function App() {
                 value={fmtRound(stats.totalBudget)}
                 color="#111827"
               />
+
               <Kpi
                 label="Pagato"
                 value={fmtRound(stats.totalPaid)}
                 color="#34c759"
               />
+
               <Kpi
                 label="Da pagare"
                 value={fmtRound(stats.totalToPay)}
                 color="#ff9f0a"
               />
-           <Kpi
-  label="Regali ricevuti"
-  value={fmtRound(stats.totalGifts)}
-  color="#bf5af2"
-  sub={`${stats.totalPersons} persone`}
-/>
 
-<Kpi
-  label="Media regalo per persona"
-  value={fmtRound(stats.mediaPerPerson)}
-  color="#007AFF"
-  sub="Calcolata su adulti + bambini"
-/>
+              <Kpi
+                label="Regali ricevuti"
+                value={fmtRound(stats.totalGifts)}
+                color="#bf5af2"
+                sub={`${stats.totalPersons} persone`}
+              />
 
-<Kpi
-  label="Saldo regali / budget"
-  value={fmtRound(net)}
-  color={net >= 0 ? "#34c759" : "#ff453a"}
-  sub={net >= 0 ? "Surplus" : "Da coprire"}
-/>
+              <Kpi
+                label="Media regalo per persona"
+                value={fmtRound(stats.mediaPerPerson)}
+                color="#007AFF"
+                sub="Calcolata su adulti + bambini"
+              />
+
+              <Kpi
+                label="Saldo regali / budget"
+                value={fmtRound(net)}
+                color={net >= 0 ? "#34c759" : "#ff453a"}
+                sub={net >= 0 ? "Surplus" : "Da coprire"}
+              />
+            </section>
 
             <section
               style={{
