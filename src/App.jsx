@@ -1385,9 +1385,9 @@ export default function App() {
                       </div>
 
                       <div className="mini-box">
-                        <div className="mini-label">Media a persona</div>
+                        <div className="mini-label">Media regali</div>
                         <div className="mini-value">
-                          {fmtRound(stats.mediaPerPerson)}
+                          {fmtRound(stats.mediaPerPerson)} / pax
                         </div>
                       </div>
                     </div>
