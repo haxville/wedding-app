@@ -21,26 +21,186 @@ const STATI = [
   { id: "incluso", label: "Incluso", color: "#8E8E93" },
 ];
 
-const CAT_MAP = Object.fromEntries(CATS.map((c) => [c.id, c]));
-const STATO_MAP = Object.fromEntries(STATI.map((s) => [s.id, s]));
+const CAT_MAP = Object.fromEntries(CATS.map((cat) => [cat.id, cat]));
+const STATO_MAP = Object.fromEntries(STATI.map((stato) => [stato.id, stato]));
 
 const SAMPLE_EXPENSES = [
-  { id: "e1", category: "catering", description: "Ristorante Adulti", unit_cost: 95, qty: 100, notes: "116 ivato a persona", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e2", category: "catering", description: "Ristorante Bambini 50%", unit_cost: 44.5, qty: 10, notes: "55 ivato a persona", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e3", category: "catering", description: "Ristorante Staff", unit_cost: 50, qty: 7, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e4", category: "catering", description: "Open Bar", unit_cost: 10, qty: 100, notes: "10 ivato a persona", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e5", category: "catering", description: "Buffet Dolci", unit_cost: 10, qty: 100, notes: "12,20 ivato a persona", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e6", category: "catering", description: "Brunch Sabato", unit_cost: 29, qty: 70, notes: "35 ivato a persona", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e7", category: "allestimenti", description: "Fiori", unit_cost: 2150, qty: 1, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e8", category: "allestimenti", description: "Allestimenti Brunch", unit_cost: 500, qty: 1, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e9", category: "intrattenimento", description: "Band", unit_cost: 2600, qty: 1, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e10", category: "intrattenimento", description: "Fotografo", unit_cost: 1600, qty: 1, notes: "", stato: "pagato", acconto_amount: "", acconto_date: "" },
-  { id: "e11", category: "inviti_ospiti", description: "Partecipazioni / Casa Ciao", unit_cost: 686.86, qty: 1, notes: "", stato: "pagato", acconto_amount: "", acconto_date: "" },
-  { id: "e12", category: "inviti_ospiti", description: "Bomboniere", unit_cost: 10, qty: 50, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e13", category: "inviti_ospiti", description: "Regalo camere testimoni", unit_cost: 250, qty: 8, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e14", category: "extra", description: "Confettata Miani", unit_cost: 197, qty: 1, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e15", category: "catering", description: "Vino Extra", unit_cost: 1000, qty: 1, notes: "", stato: "da_pagare", acconto_amount: "", acconto_date: "" },
-  { id: "e16", category: "extra", description: "Fedi", unit_cost: 750, qty: 1, notes: "", stato: "pagato", acconto_amount: "", acconto_date: "" },
+  {
+    id: "e1",
+    category: "catering",
+    description: "Ristorante Adulti",
+    unit_cost: 95,
+    qty: 100,
+    notes: "116 ivato a persona",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e2",
+    category: "catering",
+    description: "Ristorante Bambini 50%",
+    unit_cost: 44.5,
+    qty: 10,
+    notes: "55 ivato a persona",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e3",
+    category: "catering",
+    description: "Ristorante Staff",
+    unit_cost: 50,
+    qty: 7,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e4",
+    category: "catering",
+    description: "Open Bar",
+    unit_cost: 10,
+    qty: 100,
+    notes: "10 ivato a persona",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e5",
+    category: "catering",
+    description: "Buffet Dolci",
+    unit_cost: 10,
+    qty: 100,
+    notes: "12,20 ivato a persona",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e6",
+    category: "catering",
+    description: "Brunch Sabato",
+    unit_cost: 29,
+    qty: 70,
+    notes: "35 ivato a persona",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e7",
+    category: "allestimenti",
+    description: "Fiori",
+    unit_cost: 2150,
+    qty: 1,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e8",
+    category: "allestimenti",
+    description: "Allestimenti Brunch",
+    unit_cost: 500,
+    qty: 1,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e9",
+    category: "intrattenimento",
+    description: "Band",
+    unit_cost: 2600,
+    qty: 1,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e10",
+    category: "intrattenimento",
+    description: "Fotografo",
+    unit_cost: 1600,
+    qty: 1,
+    notes: "",
+    stato: "pagato",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e11",
+    category: "inviti_ospiti",
+    description: "Partecipazioni / Casa Ciao",
+    unit_cost: 686.86,
+    qty: 1,
+    notes: "",
+    stato: "pagato",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e12",
+    category: "inviti_ospiti",
+    description: "Bomboniere",
+    unit_cost: 10,
+    qty: 50,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e13",
+    category: "inviti_ospiti",
+    description: "Regalo camere testimoni",
+    unit_cost: 250,
+    qty: 8,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e14",
+    category: "extra",
+    description: "Confettata Miani",
+    unit_cost: 197,
+    qty: 1,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e15",
+    category: "catering",
+    description: "Vino Extra",
+    unit_cost: 1000,
+    qty: 1,
+    notes: "",
+    stato: "da_pagare",
+    acconto_amount: "",
+    acconto_date: "",
+  },
+  {
+    id: "e16",
+    category: "extra",
+    description: "Fedi",
+    unit_cost: 750,
+    qty: 1,
+    notes: "",
+    stato: "pagato",
+    acconto_amount: "",
+    acconto_date: "",
+  },
 ];
 
 const fmt = (value) =>
@@ -80,9 +240,22 @@ function AppStyles() {
   return (
     <style>{`
       :root {
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
-        color: #111827;
-        background: #F5F5F7;
+        --ink: #1D1D1F;
+        --ink-soft: #2F3744;
+        --muted: #667085;
+        --muted-light: #8A94A6;
+
+        --paper: #FFFFFF;
+        --page: #F7FBFD;
+        --sky-soft: #EAF8FC;
+        --sky: #BFEAF5;
+        --sky-strong: #6CBFD6;
+        --sky-dark: #3E92AA;
+
+        --danger: #FF3B30;
+        --green: #34C759;
+        --orange: #FF9500;
+        --purple: #AF52DE;
       }
 
       * {
@@ -90,21 +263,36 @@ function AppStyles() {
         -webkit-tap-highlight-color: transparent;
       }
 
-      body {
-        margin: 0;
-        background: #F5F5F7;
+      html,
+      body,
+      #root {
+        min-height: 100%;
+        color: var(--ink);
+        background: var(--page);
       }
 
-      button, input, select, textarea {
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+        color: var(--ink);
+        background: var(--page);
+      }
+
+      button,
+      input,
+      select,
+      textarea {
         font-family: inherit;
       }
 
       .app {
         min-height: 100vh;
         padding: 18px 14px 96px;
+        color: var(--ink);
         background:
-          radial-gradient(circle at top left, rgba(0, 122, 255, 0.12), transparent 34%),
-          linear-gradient(180deg, #FBFBFD 0%, #F5F5F7 42%, #EFEFF4 100%);
+          radial-gradient(circle at 18% 0%, rgba(191, 234, 245, 0.75), transparent 34%),
+          radial-gradient(circle at 90% 16%, rgba(234, 248, 252, 0.95), transparent 32%),
+          linear-gradient(180deg, #FFFFFF 0%, #F7FBFD 42%, #EAF8FC 100%);
       }
 
       .wrap {
@@ -122,14 +310,15 @@ function AppStyles() {
       }
 
       .eyebrow {
-        color: #6B7280;
+        color: var(--sky-dark);
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 750;
         margin-bottom: 4px;
       }
 
       .title {
         margin: 0;
+        color: var(--ink);
         font-size: 32px;
         line-height: 1.02;
         letter-spacing: -0.06em;
@@ -142,8 +331,9 @@ function AppStyles() {
         align-items: center;
         gap: 7px;
         flex-wrap: wrap;
-        color: #6B7280;
+        color: var(--muted);
         font-size: 14px;
+        font-weight: 600;
       }
 
       .sync-dot {
@@ -154,9 +344,9 @@ function AppStyles() {
       }
 
       .glass {
-        background: rgba(255, 255, 255, 0.82);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.07);
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(62, 146, 170, 0.14);
+        box-shadow: 0 18px 40px rgba(62, 146, 170, 0.10);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
       }
@@ -165,17 +355,19 @@ function AppStyles() {
         border-radius: 32px;
         padding: 22px;
         margin-bottom: 14px;
+        color: var(--ink);
       }
 
       .hero-label {
-        color: #6B7280;
+        color: var(--ink-soft);
         font-size: 13px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
 
       .hero-value {
+        color: var(--ink);
         font-size: 44px;
         line-height: 1;
         letter-spacing: -0.075em;
@@ -190,19 +382,21 @@ function AppStyles() {
       }
 
       .mini-box {
-        background: #F5F5F7;
+        background: var(--sky-soft);
+        border: 1px solid rgba(108, 191, 214, 0.18);
         border-radius: 20px;
         padding: 12px;
       }
 
       .mini-label {
         font-size: 12px;
-        color: #6B7280;
+        color: var(--muted);
         margin-bottom: 4px;
-        font-weight: 650;
+        font-weight: 700;
       }
 
       .mini-value {
+        color: var(--ink);
         font-size: 17px;
         font-weight: 850;
         letter-spacing: -0.04em;
@@ -218,12 +412,13 @@ function AppStyles() {
       .stat {
         border-radius: 24px;
         padding: 17px;
+        color: var(--ink);
       }
 
       .stat-label {
         font-size: 12px;
-        color: #6B7280;
-        font-weight: 750;
+        color: var(--ink-soft);
+        font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 0.045em;
         margin-bottom: 9px;
@@ -236,9 +431,10 @@ function AppStyles() {
       }
 
       .stat-sub {
-        color: #6B7280;
+        color: var(--muted);
         font-size: 13px;
         margin-top: 5px;
+        font-weight: 600;
       }
 
       .section-head {
@@ -251,8 +447,10 @@ function AppStyles() {
 
       .section-title {
         margin: 0;
+        color: var(--ink);
         font-size: 22px;
         letter-spacing: -0.045em;
+        font-weight: 900;
       }
 
       .list {
@@ -263,6 +461,7 @@ function AppStyles() {
       .item-card {
         border-radius: 24px;
         padding: 16px;
+        color: var(--ink);
       }
 
       .item-top {
@@ -273,19 +472,22 @@ function AppStyles() {
       }
 
       .item-title {
+        color: var(--ink);
         font-size: 17px;
-        font-weight: 850;
+        font-weight: 900;
         letter-spacing: -0.025em;
         margin-bottom: 5px;
       }
 
       .item-meta {
-        color: #6B7280;
+        color: var(--muted);
         font-size: 13px;
         line-height: 1.35;
+        font-weight: 600;
       }
 
       .item-amount {
+        color: var(--ink);
         font-size: 21px;
         font-weight: 900;
         letter-spacing: -0.045em;
@@ -312,8 +514,8 @@ function AppStyles() {
 
       .actions {
         display: flex;
-        gap: 8px;
-        margin-top: 13px;
+        gap: 6px;
+        margin-top: 12px;
       }
 
       .btn {
@@ -330,37 +532,46 @@ function AppStyles() {
         gap: 7px;
       }
 
+      .actions .btn {
+        min-height: 32px;
+        padding: 0 10px;
+        font-size: 12px;
+        border-radius: 999px;
+        box-shadow: none;
+      }
+
       .btn-primary {
-        background: #007AFF;
+        background: var(--sky-strong);
         color: white;
-        box-shadow: 0 10px 24px rgba(0, 122, 255, 0.22);
+        box-shadow: 0 10px 24px rgba(108, 191, 214, 0.28);
       }
 
       .btn-soft {
-        background: rgba(0, 122, 255, 0.11);
-        color: #007AFF;
+        background: rgba(108, 191, 214, 0.16);
+        color: var(--sky-dark);
       }
 
       .btn-danger {
-        background: rgba(255, 59, 48, 0.11);
-        color: #FF3B30;
+        background: rgba(255, 59, 48, 0.10);
+        color: var(--danger);
       }
 
       .btn-ghost {
         background: transparent;
-        color: #6B7280;
+        color: var(--sky-dark);
       }
 
-      .input, .select {
+      .input,
+      .select {
         width: 100%;
         min-height: 48px;
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(62, 146, 170, 0.18);
         border-radius: 16px;
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.96);
         padding: 0 14px;
         font-size: 16px;
         outline: none;
-        color: #111827;
+        color: var(--ink);
       }
 
       textarea.input {
@@ -377,7 +588,7 @@ function AppStyles() {
       .field label {
         font-size: 12px;
         font-weight: 800;
-        color: #6B7280;
+        color: var(--ink-soft);
         text-transform: uppercase;
         letter-spacing: 0.055em;
       }
@@ -407,6 +618,8 @@ function AppStyles() {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 6px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(62, 146, 170, 0.16);
       }
 
       .nav-btn {
@@ -414,7 +627,7 @@ function AppStyles() {
         border-radius: 21px;
         min-height: 50px;
         background: transparent;
-        color: #6B7280;
+        color: var(--muted);
         display: grid;
         place-items: center;
         font-size: 11px;
@@ -429,15 +642,17 @@ function AppStyles() {
       }
 
       .nav-active {
-        background: #111827;
+        background: var(--sky-strong);
         color: white;
+        box-shadow: 0 8px 18px rgba(108, 191, 214, 0.26);
       }
 
       .empty {
         border-radius: 24px;
         padding: 22px;
         text-align: center;
-        color: #6B7280;
+        color: var(--muted);
+        font-weight: 650;
       }
 
       .error {
@@ -446,7 +661,7 @@ function AppStyles() {
         background: rgba(255, 59, 48, 0.09);
         color: #B42318;
         margin-bottom: 12px;
-        font-weight: 650;
+        font-weight: 700;
       }
 
       .password-page {
@@ -454,9 +669,10 @@ function AppStyles() {
         display: grid;
         place-items: center;
         padding: 20px;
+        color: var(--ink);
         background:
-          radial-gradient(circle at top, rgba(0, 122, 255, 0.16), transparent 34%),
-          linear-gradient(180deg, #FBFBFD 0%, #F5F5F7 100%);
+          radial-gradient(circle at top, rgba(191, 234, 245, 0.8), transparent 36%),
+          linear-gradient(180deg, #FFFFFF 0%, #EAF8FC 100%);
       }
 
       .password-card {
@@ -465,20 +681,21 @@ function AppStyles() {
         border-radius: 32px;
         padding: 26px;
         text-align: center;
+        color: var(--ink);
       }
 
       .logo {
         width: 68px;
         height: 68px;
         border-radius: 22px;
-        background: #007AFF;
+        background: var(--sky-strong);
         color: white;
         display: grid;
         place-items: center;
         font-size: 24px;
         font-weight: 900;
         margin: 0 auto 16px;
-        box-shadow: 0 16px 28px rgba(0, 122, 255, 0.26);
+        box-shadow: 0 16px 28px rgba(108, 191, 214, 0.30);
       }
 
       @media (min-width: 760px) {
@@ -512,7 +729,13 @@ function AppStyles() {
   );
 }
 
-function Button({ children, onClick, variant = "primary", disabled = false, type = "button" }) {
+function Button({
+  children,
+  onClick,
+  variant = "primary",
+  disabled = false,
+  type = "button",
+}) {
   const cls =
     variant === "danger"
       ? "btn btn-danger"
@@ -573,9 +796,9 @@ function PasswordGate({ onUnlock }) {
             placeholder="Password"
             value={password}
             autoFocus
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") checkPassword();
+            onChange={(event) => setPassword(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") checkPassword();
             }}
             style={{
               textAlign: "center",
@@ -590,6 +813,7 @@ function PasswordGate({ onUnlock }) {
           )}
 
           <div style={{ height: 12 }} />
+
           <Button onClick={checkPassword}>Entra</Button>
         </section>
       </main>
@@ -597,7 +821,7 @@ function PasswordGate({ onUnlock }) {
   );
 }
 
-function StatCard({ label, value, sub, color = "#111827" }) {
+function StatCard({ label, value, sub, color = "#1D1D1F" }) {
   return (
     <div className="stat glass">
       <div className="stat-label">{label}</div>
@@ -676,7 +900,9 @@ function ExpenseCard({ item, onEdit, onDelete }) {
             </span>{" "}
             · {item.qty} × {fmt(item.unit_cost)}
           </div>
+
           {item.notes && <div className="item-meta">{item.notes}</div>}
+
           <Pill stato={item.stato} />
         </div>
 
@@ -821,8 +1047,12 @@ export default function App() {
 
     const totalPaid = expenses.reduce((sum, item) => {
       const total = Number(item.unit_cost || 0) * Number(item.qty || 0);
+
       if (item.stato === "pagato") return sum + total;
-      if (item.stato === "acconto") return sum + Number(item.acconto_amount || 0);
+      if (item.stato === "acconto") {
+        return sum + Number(item.acconto_amount || 0);
+      }
+
       return sum;
     }, 0);
 
@@ -830,6 +1060,7 @@ export default function App() {
       const total = Number(item.unit_cost || 0) * Number(item.qty || 0);
 
       if (item.stato === "pagato" || item.stato === "incluso") return sum;
+
       if (item.stato === "acconto") {
         return sum + Math.max(0, total - Number(item.acconto_amount || 0));
       }
@@ -843,13 +1074,15 @@ export default function App() {
     );
 
     const totalPersons = gifts.reduce(
-      (sum, item) => sum + Number(item.adults || 0) + Number(item.children || 0),
+      (sum, item) =>
+        sum + Number(item.adults || 0) + Number(item.children || 0),
       0
     );
 
     const mediaPerPerson = totalPersons > 0 ? totalGifts / totalPersons : 0;
     const net = totalGifts - totalBudget;
-    const paidPercent = totalBudget > 0 ? Math.round((totalPaid / totalBudget) * 100) : 0;
+    const paidPercent =
+      totalBudget > 0 ? Math.round((totalPaid / totalBudget) * 100) : 0;
 
     return {
       totalBudget,
@@ -877,9 +1110,16 @@ export default function App() {
       });
   }, [expenses, filterCat, filterStato]);
 
-  const recentExpenses = useMemo(() => filteredExpenses.slice(0, 5), [filteredExpenses]);
+  const recentExpenses = useMemo(
+    () => filteredExpenses.slice(0, 5),
+    [filteredExpenses]
+  );
+
   const recentGifts = useMemo(
-    () => [...gifts].sort((a, b) => Number(b.amount || 0) - Number(a.amount || 0)).slice(0, 5),
+    () =>
+      [...gifts]
+        .sort((a, b) => Number(b.amount || 0) - Number(a.amount || 0))
+        .slice(0, 5),
     [gifts]
   );
 
@@ -946,7 +1186,10 @@ export default function App() {
     };
 
     try {
-      const { error: upsertError } = await supabase.from("expenses").upsert(item);
+      const { error: upsertError } = await supabase
+        .from("expenses")
+        .upsert(item);
+
       if (upsertError) throw upsertError;
 
       await loadData();
@@ -974,6 +1217,7 @@ export default function App() {
         .eq("id", id);
 
       if (deleteError) throw deleteError;
+
       await loadData();
     } catch (err) {
       console.error(err);
@@ -1020,7 +1264,10 @@ export default function App() {
     };
 
     try {
-      const { error: upsertError } = await supabase.from("gifts").upsert(item);
+      const { error: upsertError } = await supabase
+        .from("gifts")
+        .upsert(item);
+
       if (upsertError) throw upsertError;
 
       await loadData();
@@ -1048,6 +1295,7 @@ export default function App() {
         .eq("id", id);
 
       if (deleteError) throw deleteError;
+
       await loadData();
     } catch (err) {
       console.error(err);
@@ -1081,10 +1329,7 @@ export default function App() {
               <div className="eyebrow">Wedding budget</div>
               <h1 className="title">Stefano & Giulia</h1>
               <div className="subtitle">
-                <span
-                  className="sync-dot"
-                  style={{ background: syncInfo.color }}
-                />
+                <span className="sync-dot" style={{ background: syncInfo.color }} />
                 <span>{syncInfo.label}</span>
                 <span>·</span>
                 <span>{daysLeft} giorni</span>
@@ -1158,7 +1403,7 @@ export default function App() {
                       label="Giorni mancanti"
                       value={daysLeft}
                       sub="al matrimonio"
-                      color="#111827"
+                      color="#1D1D1F"
                     />
                   </section>
 
@@ -1225,7 +1470,7 @@ export default function App() {
                     <select
                       className="select"
                       value={filterCat}
-                      onChange={(e) => setFilterCat(e.target.value)}
+                      onChange={(event) => setFilterCat(event.target.value)}
                     >
                       <option value="all">Tutte</option>
                       {CATS.map((cat) => (
@@ -1238,7 +1483,7 @@ export default function App() {
                     <select
                       className="select"
                       value={filterStato}
-                      onChange={(e) => setFilterStato(e.target.value)}
+                      onChange={(event) => setFilterStato(event.target.value)}
                     >
                       <option value="all">Tutti</option>
                       {STATI.map((stato) => (
@@ -1280,6 +1525,7 @@ export default function App() {
                       sub={`${stats.totalPersons} persone`}
                       color="#AF52DE"
                     />
+
                     <StatCard
                       label="Media persona"
                       value={fmtRound(stats.mediaPerPerson)}
@@ -1293,7 +1539,10 @@ export default function App() {
                       <div className="empty glass">Nessun regalo registrato.</div>
                     ) : (
                       [...gifts]
-                        .sort((a, b) => Number(b.amount || 0) - Number(a.amount || 0))
+                        .sort(
+                          (a, b) =>
+                            Number(b.amount || 0) - Number(a.amount || 0)
+                        )
                         .map((item) => (
                           <GiftCard
                             key={item.id}
@@ -1327,10 +1576,10 @@ export default function App() {
                         <input
                           className="input"
                           value={expenseForm.description}
-                          onChange={(e) =>
-                            setExpenseForm((f) => ({
-                              ...f,
-                              description: e.target.value,
+                          onChange={(event) =>
+                            setExpenseForm((form) => ({
+                              ...form,
+                              description: event.target.value,
                             }))
                           }
                           placeholder="Es. Band, fiori, open bar"
@@ -1341,10 +1590,10 @@ export default function App() {
                         <select
                           className="select"
                           value={expenseForm.category}
-                          onChange={(e) =>
-                            setExpenseForm((f) => ({
-                              ...f,
-                              category: e.target.value,
+                          onChange={(event) =>
+                            setExpenseForm((form) => ({
+                              ...form,
+                              category: event.target.value,
                             }))
                           }
                         >
@@ -1360,10 +1609,10 @@ export default function App() {
                         <select
                           className="select"
                           value={expenseForm.stato}
-                          onChange={(e) =>
-                            setExpenseForm((f) => ({
-                              ...f,
-                              stato: e.target.value,
+                          onChange={(event) =>
+                            setExpenseForm((form) => ({
+                              ...form,
+                              stato: event.target.value,
                             }))
                           }
                         >
@@ -1382,10 +1631,10 @@ export default function App() {
                           min="0"
                           step="0.01"
                           value={expenseForm.unit_cost}
-                          onChange={(e) =>
-                            setExpenseForm((f) => ({
-                              ...f,
-                              unit_cost: e.target.value,
+                          onChange={(event) =>
+                            setExpenseForm((form) => ({
+                              ...form,
+                              unit_cost: event.target.value,
                             }))
                           }
                         />
@@ -1398,10 +1647,10 @@ export default function App() {
                           min="0"
                           step="0.5"
                           value={expenseForm.qty}
-                          onChange={(e) =>
-                            setExpenseForm((f) => ({
-                              ...f,
-                              qty: e.target.value,
+                          onChange={(event) =>
+                            setExpenseForm((form) => ({
+                              ...form,
+                              qty: event.target.value,
                             }))
                           }
                         />
@@ -1416,10 +1665,10 @@ export default function App() {
                               min="0"
                               step="0.01"
                               value={expenseForm.acconto_amount}
-                              onChange={(e) =>
-                                setExpenseForm((f) => ({
-                                  ...f,
-                                  acconto_amount: e.target.value,
+                              onChange={(event) =>
+                                setExpenseForm((form) => ({
+                                  ...form,
+                                  acconto_amount: event.target.value,
                                 }))
                               }
                             />
@@ -1430,10 +1679,10 @@ export default function App() {
                               className="input"
                               type="date"
                               value={expenseForm.acconto_date}
-                              onChange={(e) =>
-                                setExpenseForm((f) => ({
-                                  ...f,
-                                  acconto_date: e.target.value,
+                              onChange={(event) =>
+                                setExpenseForm((form) => ({
+                                  ...form,
+                                  acconto_date: event.target.value,
                                 }))
                               }
                             />
@@ -1445,10 +1694,10 @@ export default function App() {
                         <textarea
                           className="input"
                           value={expenseForm.notes}
-                          onChange={(e) =>
-                            setExpenseForm((f) => ({
-                              ...f,
-                              notes: e.target.value,
+                          onChange={(event) =>
+                            setExpenseForm((form) => ({
+                              ...form,
+                              notes: event.target.value,
                             }))
                           }
                           placeholder="Note opzionali"
@@ -1464,7 +1713,7 @@ export default function App() {
                         Number(expenseForm.unit_cost || 0) *
                           Number(expenseForm.qty || 0)
                       )}
-                      color="#111827"
+                      color="#1D1D1F"
                     />
 
                     <div style={{ height: 16 }} />
@@ -1496,10 +1745,10 @@ export default function App() {
                         <input
                           className="input"
                           value={giftForm.guest}
-                          onChange={(e) =>
-                            setGiftForm((f) => ({
-                              ...f,
-                              guest: e.target.value,
+                          onChange={(event) =>
+                            setGiftForm((form) => ({
+                              ...form,
+                              guest: event.target.value,
                             }))
                           }
                           placeholder="Es. Famiglia Rossi"
@@ -1510,10 +1759,10 @@ export default function App() {
                         <input
                           className="input"
                           value={giftForm.description}
-                          onChange={(e) =>
-                            setGiftForm((f) => ({
-                              ...f,
-                              description: e.target.value,
+                          onChange={(event) =>
+                            setGiftForm((form) => ({
+                              ...form,
+                              description: event.target.value,
                             }))
                           }
                           placeholder="Busta, assegno..."
@@ -1527,10 +1776,10 @@ export default function App() {
                           min="0"
                           step="0.01"
                           value={giftForm.amount}
-                          onChange={(e) =>
-                            setGiftForm((f) => ({
-                              ...f,
-                              amount: e.target.value,
+                          onChange={(event) =>
+                            setGiftForm((form) => ({
+                              ...form,
+                              amount: event.target.value,
                             }))
                           }
                         />
@@ -1541,10 +1790,10 @@ export default function App() {
                           className="input"
                           type="date"
                           value={giftForm.date}
-                          onChange={(e) =>
-                            setGiftForm((f) => ({
-                              ...f,
-                              date: e.target.value,
+                          onChange={(event) =>
+                            setGiftForm((form) => ({
+                              ...form,
+                              date: event.target.value,
                             }))
                           }
                         />
@@ -1556,10 +1805,10 @@ export default function App() {
                           type="number"
                           min="0"
                           value={giftForm.adults}
-                          onChange={(e) =>
-                            setGiftForm((f) => ({
-                              ...f,
-                              adults: e.target.value,
+                          onChange={(event) =>
+                            setGiftForm((form) => ({
+                              ...form,
+                              adults: event.target.value,
                             }))
                           }
                         />
@@ -1571,10 +1820,10 @@ export default function App() {
                           type="number"
                           min="0"
                           value={giftForm.children}
-                          onChange={(e) =>
-                            setGiftForm((f) => ({
-                              ...f,
-                              children: e.target.value,
+                          onChange={(event) =>
+                            setGiftForm((form) => ({
+                              ...form,
+                              children: event.target.value,
                             }))
                           }
                         />
