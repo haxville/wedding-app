@@ -216,6 +216,12 @@ const fmtRound = (value) =>
     maximumFractionDigits: 0,
   }).format(Number(value || 0));
 
+const fmtSignedRound = (value) => {
+  const number = Number(value || 0);
+  if (number > 0) return `+${fmtRound(number)}`;
+  return fmtRound(number);
+};
+
 const emptyExpense = () => ({
   description: "",
   category: "catering",
@@ -474,8 +480,8 @@ function AppStyles() {
       .item-title {
         color: var(--ink);
         font-size: 17px;
-        font-weight: 900;
-        letter-spacing: -0.025em;
+        font-weight: 500;
+        letter-spacing: -0.02em;
         margin-bottom: 5px;
       }
 
@@ -487,10 +493,9 @@ function AppStyles() {
       }
 
       .item-amount {
-        color: var(--ink);
         font-size: 21px;
-        font-weight: 900;
-        letter-spacing: -0.045em;
+        font-weight: 500;
+        letter-spacing: -0.035em;
         text-align: right;
         white-space: nowrap;
       }
@@ -895,7 +900,7 @@ function ExpenseCard({ item, onEdit, onDelete }) {
         <div>
           <div className="item-title">{item.description}</div>
           <div className="item-meta">
-            <span style={{ color: cat.color, fontWeight: 800 }}>
+            <span style={{ color: cat.color, fontWeight: 700 }}>
               {cat.label}
             </span>{" "}
             · {item.qty} × {fmt(item.unit_cost)}
@@ -906,7 +911,9 @@ function ExpenseCard({ item, onEdit, onDelete }) {
           <Pill stato={item.stato} />
         </div>
 
-        <div className="item-amount">{fmtRound(total)}</div>
+        <div className="item-amount" style={{ color: "#FF3B30" }}>
+          -{fmtRound(total)}
+        </div>
       </div>
 
       <div className="actions">
@@ -939,7 +946,9 @@ function GiftCard({ item, onEdit, onDelete }) {
           {item.date && <div className="item-meta">{item.date}</div>}
         </div>
 
-        <div className="item-amount">{fmtRound(item.amount)}</div>
+        <div className="item-amount" style={{ color: "#34C759" }}>
+          +{fmtRound(item.amount)}
+        </div>
       </div>
 
       <div className="actions">
@@ -1312,6 +1321,9 @@ export default function App() {
       offline: { label: "Offline", color: "#FF3B30" },
     }[syncStatus] || { label: "Connessione...", color: "#FF9500" };
 
+  const saldoColor =
+    stats.net > 0 ? "#34C759" : stats.net < 0 ? "#FF3B30" : "#1D1D1F";
+
   if (!unlocked) {
     return <PasswordGate onUnlock={() => setUnlocked(true)} />;
   }
@@ -1352,10 +1364,17 @@ export default function App() {
               {screen === "dashboard" && (
                 <>
                   <section className="hero glass">
-                    <div className="hero-label">Budget totale</div>
-                    <div className="hero-value">{fmtRound(stats.totalBudget)}</div>
+                    <div className="hero-label">Saldo finale</div>
+                    <div className="hero-value" style={{ color: saldoColor }}>
+                      {fmtSignedRound(stats.net)}
+                    </div>
 
                     <div className="hero-grid">
+                      <div className="mini-box">
+                        <div className="mini-label">Avanzamento</div>
+                        <div className="mini-value">{stats.paidPercent}%</div>
+                      </div>
+
                       <div className="mini-box">
                         <div className="mini-label">Pagato</div>
                         <div className="mini-value" style={{ color: "#34C759" }}>
@@ -1369,15 +1388,24 @@ export default function App() {
                           {fmtRound(stats.totalToPay)}
                         </div>
                       </div>
-
-                      <div className="mini-box">
-                        <div className="mini-label">Avanzamento</div>
-                        <div className="mini-value">{stats.paidPercent}%</div>
-                      </div>
                     </div>
                   </section>
 
                   <section className="grid">
+                    <StatCard
+                      label="Giorni mancanti"
+                      value={daysLeft}
+                      sub="al matrimonio"
+                      color="#1D1D1F"
+                    />
+
+                    <StatCard
+                      label="Spese totali"
+                      value={fmtRound(stats.totalBudget)}
+                      sub="budget complessivo"
+                      color="#1D1D1F"
+                    />
+
                     <StatCard
                       label="Regali ricevuti"
                       value={fmtRound(stats.totalGifts)}
@@ -1386,24 +1414,10 @@ export default function App() {
                     />
 
                     <StatCard
-                      label="Media persona"
+                      label="Media a persona"
                       value={fmtRound(stats.mediaPerPerson)}
                       sub="Adulti + bambini"
                       color="#007AFF"
-                    />
-
-                    <StatCard
-                      label="Saldo finale"
-                      value={fmtRound(stats.net)}
-                      sub={stats.net >= 0 ? "Surplus" : "Da coprire"}
-                      color={stats.net >= 0 ? "#34C759" : "#FF3B30"}
-                    />
-
-                    <StatCard
-                      label="Giorni mancanti"
-                      value={daysLeft}
-                      sub="al matrimonio"
-                      color="#1D1D1F"
                     />
                   </section>
 
